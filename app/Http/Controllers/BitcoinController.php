@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use Illuminate\Support\Facades\Http;
 use Illuminate\Http\Request;
 
 class BitcoinController extends Controller
@@ -13,6 +13,8 @@ class BitcoinController extends Controller
     //  https://api.coindesk.com/v1/bpi/currentprice/eur.json 
     //  and returns modified data as per user request
     public function getBitcoinInfo(){
+        $response = Http::get('https://api.coindesk.com/v1/bpi/historical/close.json?start=2013-09-01&end=2013-09-05&currency=eur');
+        dd($response);
 
     }
 

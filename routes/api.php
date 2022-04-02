@@ -15,6 +15,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 Route::get(
-    '/user/profile',
-    [BitcoinController::class, 'show']
-)->name('profile');
+    'getBitcoinInfo',
+    [BitcoinController::class, 'getBitcoinInfo']
+)->name('getBitcoinInfo');
+
+Route::fallback(function(){
+    return response()->json(['message' => 'Url not found'], 404);
+});
