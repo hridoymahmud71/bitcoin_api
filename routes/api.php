@@ -20,5 +20,5 @@ Route::get(
 )->name('getBitcoinInfo');
 
 Route::fallback(function(){
-    return response()->json(['message' => 'Url not found'], 404);
+    return response()->json(['result'=> false,'message' => 'Url not found'], 404);
 });
