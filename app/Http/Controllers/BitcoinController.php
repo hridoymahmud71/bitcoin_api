@@ -37,10 +37,12 @@ class BitcoinController extends Controller
 
         $current_data = $this->getCurrentData($request_data);
         $historical_data = $this->getHistoricalData($request_data);
-
+        
         return response()->json([
-            'current'     => $current_data,
-            'historical'  => $historical_data
+            'result'        =>  true,
+            'message'       => "data fetched",
+            'current'       => $current_data,
+            'historical'    => $historical_data
         ]);
     }
 
@@ -143,14 +145,14 @@ class BitcoinController extends Controller
 
 
         // generating max min from values
-        $values = array_values((array) $historical_response->object()->bpi);        
+        $values = array_values((array) $historical_response->object()->bpi);
         $max = max($values);
         $min = min($values);
 
-       return  [
+        return  [
             'data'   => [
-                "max"=>$max,
-                "min"=>$min
+                "max" => $max,
+                "min" => $min
             ],
             'message'       => "historical data is found"
         ];
