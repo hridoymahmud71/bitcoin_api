@@ -1,0 +1,25 @@
+# ./docker-compose.yml
+
+version: '3'
+
+services:
+  db:
+    image: mysql:5.7
+    environment:
+      MYSQL_ROOT_PASSWORD: root_bitocin_api
+      MYSQL_DATABASE: bitcoin_api
+      MYSQL_USER: bitcoin_api
+      MYSQL_PASSWORD: bitcoin_api
+    ports:
+      - "9906:3306"
+  web:
+    image: php:7.4.1-apache
+    container_name: php_web
+    depends_on:
+      - db
+    volumes:
+      - ./php/:/var/www/html/
+    ports:
+      - "8100:80"
+    stdin_open: true
+    tty: true
