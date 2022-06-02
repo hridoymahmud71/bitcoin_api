@@ -12,13 +12,26 @@ services:
       MYSQL_PASSWORD: bitcoin_api
     ports:
       - "9906:3306"
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    container_name: pma
+    links:
+      - db
+    environment:
+      PMA_HOST: db
+      PMA_PORT: 3306
+      PMA_ARBITRARY: 1
+    restart: always
+    ports:
+      - 8081:80
   web:
     image: php:7.4.1-apache
     container_name: php_web
     depends_on:
       - db
     volumes:
-      - ./php/:/var/www/html/
+      - ./:/var/www/html/
+      - ./apache/default.conf:/etc/apache2/sites-enabled/000-default.conf
     ports:
       - "8100:80"
     stdin_open: true
