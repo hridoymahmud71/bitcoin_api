@@ -15,7 +15,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 Route::get(
-    'getBitcoinInfo',
+    '/getBitcoinInfo',
     [BitcoinController::class, 'getBitcoinInfo']
 )->name('getBitcoinInfo');
 
